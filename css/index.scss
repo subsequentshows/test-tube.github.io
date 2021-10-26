@@ -1,0 +1,178 @@
+body {
+  // background-image: url(../bottles/bottle-1.png);
+  background-color: transparent;
+  background-position: 50% 0%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+}
+
+.tube-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+
+  .tube {
+    border: solid 6px #ffffff;
+    border-bottom: none;
+    width: 50px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    transition: transform 1s;
+
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      background: blue;
+    }
+
+    &:after {
+      top: 100%;
+      left: -6px;
+      width: 100%;
+      min-width: 50px;
+      padding-bottom: 100%;
+      border: solid 6px #ffffff;
+      border-top: none;
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      box-shadow: 0px -30px 0px -6px blue, 0px -50px 0px -6px blue;
+    }
+
+    &:before {
+      bottom: 0;
+      height: 138px;
+      width: 50px;
+      z-index: -1;
+      transition: transform 1s;
+    }
+
+    &:hover {
+      transform: rotate(60deg);
+    }
+
+    &:hover:before {
+      transform: skewY(-60deg);
+    }
+
+    img {
+      max-width: 250px;
+      max-height: 250px;
+    }
+  }
+
+  .play-section {
+    margin-left: 300px;
+    .wrapper {
+      width: 500px;
+      background-color: black;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      user-select: none;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .bottle-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      // border-left: 1px solid white;
+      // border-right: 1px solid white;
+      border-bottom: 1px solid white;
+      height: 115px;
+      width: 25px;
+      overflow: hidden;
+      margin-right: 15%;
+      margin-bottom: 15px;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      transition: transform 0.3s;
+      background: url(../bottles/bottle-4.png) no-repeat 50% 50% / cover;
+
+      &:nth-child(1) {
+        background: url(../bottles/bottle-1.png) no-repeat 50% 50% / cover;
+      }
+
+      &:nth-child(2) {
+        background: url(../bottles/bottle-2.png) no-repeat 50% 50% / cover;
+      }
+
+      &:nth-child(3) {
+        background: url(../bottles/bottle-3.png) no-repeat 50% 50% / cover;
+      }
+
+      &::before {
+        content: "";
+        background: #ffffff;
+        position: absolute;
+        top: 10%;
+        right: 0;
+        height: 90%;
+        width: 1px;
+      }
+
+      &::after {
+        content: "";
+        background: #ffffff;
+        position: absolute;
+        top: 10%;
+        left: 0;
+        height: 90%;
+        width: 1px;
+      }
+
+      .bottle-floor {
+        transition: transform 0.35s;
+      }
+
+      &.is-selected {
+        /* border: white 5px solid; */
+        position: relative;
+        z-index: 999;
+        transition: transform 0.3s;
+        transform: rotate(60deg);
+        cursor: grab;
+
+        .bottle-floor {
+          transform: translateY(20px) skewY(-60deg);
+          height: 40px;
+
+          &:last-child {
+            height: 40px !important;
+          }
+        }
+      }
+    }
+
+    .is-back {
+      transition: 0.4s ease;
+    }
+
+    .bottle-floor {
+      width: 100%;
+    }
+
+    .wrapper.is-dragging > * {
+      pointer-events: none;
+    }
+
+    .is-action {
+      transform: rotate(120deg);
+      transition: linear 0.4s;
+    }
+  }
+}
